@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/08 10:49:24 by kakahuate        ###   ########.fr       */
+/*   Created: 2025/05/04 19:40:10 by kakahuate         #+#    #+#             */
+/*   Updated: 2025/05/05 11:44:01 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	
+	t_list	*temporal;
+
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		temporal = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temporal;
+	}
 }

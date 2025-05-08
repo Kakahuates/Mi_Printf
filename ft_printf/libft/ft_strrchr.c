@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/08 10:49:24 by kakahuate        ###   ########.fr       */
+/*   Created: 2025/04/15 12:32:50 by ksanchez          #+#    #+#             */
+/*   Updated: 2025/04/25 14:33:31 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+/* #include <string.h>
+#include <stdio.h> */
 
-int	ft_printf(const char *format, ...)
+char	*ft_strrchr(const char *s, int c)
 {
-	
+	int		i;
+	char	*last_coinc;
+
+	i = 0;
+	last_coinc = NULL;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+		{
+			last_coinc = (char *) &s[i];
+			return (last_coinc);
+		}
+		i--;
+	}
+	return (last_coinc);
 }

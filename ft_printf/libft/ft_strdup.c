@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/08 10:49:24 by kakahuate        ###   ########.fr       */
+/*   Created: 2025/04/24 16:23:05 by kakahuate         #+#    #+#             */
+/*   Updated: 2025/04/25 14:45:20 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_strdup(const char *s)
 {
-	
+	int		i;
+	int		length;
+	char	*copy;
+
+	length = ft_strlen(s);
+	copy = (char *)malloc(length + 1);
+	if (copy == NULL)
+	{
+		return (NULL);
+	}
+	else
+	{
+		i = 0;
+		while (i < length + 1)
+		{
+			copy[i] = s[i];
+			i++;
+		}
+	}
+	return (copy);
 }
