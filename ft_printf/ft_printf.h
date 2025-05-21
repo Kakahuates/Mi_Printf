@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:44:49 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/08 09:50:09 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/20 12:28:03 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # include <stdarg.h>
 
 # include "libft/libft.h"
+
+int	ft_printf(const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/08 13:36:33 by kakahuate        ###   ########.fr        #
+#    Updated: 2025/05/08 17:29:32 by kakahuate        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,21 +43,32 @@ RM = rm -f
 #Rules: Dependencies
 #		comands
 
+#Defines the 'all' target, which depends on the $(NAME)
+#target (libftprintf.a)
 all: $(NAME)
 
+#Defines the rule to create the library.
+#It depends on the object file and the libft library
 $(NAME) : $(OBJ) $(LIBFT_OBJ)
 	$(AR) $(ARFLAGS) $@ $^
 
+#Defines a generic rule to create object files from source files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+#Defines the 'clean' target to remove object files
 clean:
 	$(RM) $(OBJ)
 
+#Defines the 'fclean' target, which depends on the 'clean' target
 fclean: clean
 	$(RM) $(NAME)
 
+#Defines the 're' target to recompile the entire project.
 re: fclean all
 
+#Defines a rule to ensure the libft library is built
+#Command to change the directory to $(LIBFT_DIR) and 
+#run the 'make' command there to build libft.a
 $(LIBFT_OBJ):
 	make -C $(LIBFT_DIR)	
