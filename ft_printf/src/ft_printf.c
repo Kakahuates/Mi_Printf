@@ -6,48 +6,20 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/21 12:41:13 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/22 15:53:03 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(va_list args)
-{
-	char	c;
-	
-	c = va_arg(args, int);
-	write(1, &c, 1);
-	return (1);
-}
-char	*print_string(va_list args)
-{
-	
-}
-int	eval_format(char c, va_list args)
-{
-	int	counter;
-
-	switch (c)
-	{
-	case 'c':
-		counter += print_char(va_arg(args, int));
-		break;
-	case 's':
-		counter += print_string(va_arg(args, char *));
-	default:
-		break;
-	}
-	return (counter);
-}
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int	i;
-	int	printed;
 	int	counter;
 	
+	i = 0;
+	counter = 0;
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
@@ -59,9 +31,9 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			counter += eval_format(format[i], args);
-			++;
 		}
-		
+		i++;
 	}
-	
+	va_end(args);
+	return (counter);
 }

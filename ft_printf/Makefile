@@ -6,7 +6,7 @@
 #    By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/08 17:29:32 by kakahuate        ###   ########.fr        #
+#    Updated: 2025/05/22 16:57:17 by kakahuate        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,24 +17,38 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-#Header file
-INCLUDE = ft_printf.h
+#Header file includes
+INCLUDES = -I include -I libft
 
-#Directory of libft library
+#Directories
+SRC_DIR = SRC
+OBJ_DIR = OBJ
 LIBFT_DIR = libft
 
-#Source files and Object files
-SRC = ft_prinft.c
-OBJ = $(SRC:.o=.c)
+#Source files
+SRCS =	$(SRC_DIR)/ft_printf.c			 	\
+		$(SRC_DIR)/eval_format.c			\
+		$(SRC_DIR)/formats/print_char.c		\
+		$(SRC_DIR)/formats/print_string.c	\
+		$(SRC_DIR)/formats/print_number.c	\
+		$(SRC_DIR)/formats/print_unsigned.c	\
+		$(SRC_DIR)/formats/print_pointer.c	\
+		$(SRC_DIR)/formats/print_percent.c	\
+		$(SRC_DIR)/utils/ft_u_itoa.c		\
+		$(SRC_DIR)/utils/ft_ultoa.c			\
+		$(SRC_DIR)/utils/ft_utoa_base.c
 
-#File library libft.a
+#Object files
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+
+#libft --static library
 LIBFT_OBJ = $(LIBFT_DIR)/libft.a
 
-#Linking files, create library and flags
+#Linking files, archiver
 AR = ar
 ARFLAGS = rcs
 
-#Clean files generaded after compilation
+#Clean command
 RM = rm -f
 
 #"Phony targets" indicates that the rules listed are not files
@@ -45,30 +59,30 @@ RM = rm -f
 
 #Defines the 'all' target, which depends on the $(NAME)
 #target (libftprintf.a)
+#Default target
 all: $(NAME)
 
-#Defines the rule to create the library.
-#It depends on the object file and the libft library
-$(NAME) : $(OBJ) $(LIBFT_OBJ)
+#Build main printf library
+$(NAME) : $(OBJS) $(LIBFT_OBJ)
 	$(AR) $(ARFLAGS) $@ $^
 
-#Defines a generic rule to create object files from source files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+#Compile each .c to .o into OBJ/
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-#Defines the 'clean' target to remove object files
+#Build libft if needed
+$(LIBFT_OBJ): 
+	$(MAKE) -C $(LIBFT_DIR)
+
+#Remove object files
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJS)
+	@-rm -rf $(OBJ_DIR)
 
-#Defines the 'fclean' target, which depends on the 'clean' target
+#Remove all generated files
 fclean: clean
 	$(RM) $(NAME)
 
-#Defines the 're' target to recompile the entire project.
+#Recompile from scratch
 re: fclean all
-
-#Defines a rule to ensure the libft library is built
-#Command to change the directory to $(LIBFT_DIR) and 
-#run the 'make' command there to build libft.a
-$(LIBFT_OBJ):
-	make -C $(LIBFT_DIR)	
