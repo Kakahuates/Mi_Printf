@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:09:20 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/22 15:38:05 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/23 12:30:46 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	*ft_ultoa(unsigned long n, char *base)
     char			*str;
     int				length;
     int				base_length;
-    unsigned long	temp;
 
-    temp = n;
     base_length = ft_strlen(base);
     length = 1;
     while (n /= base_length)

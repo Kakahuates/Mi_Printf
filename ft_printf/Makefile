@@ -6,7 +6,7 @@
 #    By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/22 16:57:17 by kakahuate        ###   ########.fr        #
+#    Updated: 2025/05/23 13:03:28 by kakahuate        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,13 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
+#Clean command
+RM = rm -f
+
+#Linking files, archiver
+AR = ar
+ARFLAGS = rcs
+
 #Header file includes
 INCLUDES = -I include -I libft
 
@@ -25,64 +32,78 @@ SRC_DIR = SRC
 OBJ_DIR = OBJ
 LIBFT_DIR = libft
 
-#Source files
-SRCS =	$(SRC_DIR)/ft_printf.c			 	\
-		$(SRC_DIR)/eval_format.c			\
-		$(SRC_DIR)/formats/print_char.c		\
-		$(SRC_DIR)/formats/print_string.c	\
-		$(SRC_DIR)/formats/print_number.c	\
-		$(SRC_DIR)/formats/print_unsigned.c	\
-		$(SRC_DIR)/formats/print_pointer.c	\
-		$(SRC_DIR)/formats/print_percent.c	\
-		$(SRC_DIR)/utils/ft_u_itoa.c		\
-		$(SRC_DIR)/utils/ft_ultoa.c			\
-		$(SRC_DIR)/utils/ft_utoa_base.c
-
-#Object files
-OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
-
 #libft --static library
-LIBFT_OBJ = $(LIBFT_DIR)/libft.a
+LIBFT_A = $(LIBFT_DIR)/libft.a
 
-#Linking files, archiver
-AR = ar
-ARFLAGS = rcs
+#Source files
+SRCS_CORE =	ft_printf.c	\
+		eval_format.c			
+SRCS_FORMATS =	print_char.c	\
+		print_number.c	\
+		print_string.c	\
+		print_unsigned.c\
+		print_pointer.c	\
+		print_hex.c	\
+		print_percent.c
+SRCS_UTILS =	ft_u_itoa.c	\
+		ft_ultoa.c	\
+		ft_utoa_base.c
+		
+#full paths to source files
+ALL_SRCS = $(addprefix $(SRC_DIR)/, $(SRCS_CORE)) \
+		$(addprefix $(SRC_DIR)/FORMATS/, $(SRCS_FORMATS)) \
+		$(addprefix $(SRC_DIR)/UTILS/, $(SRCS_UTILS))
+			
+#Object files, converts SRC->OBJ with a complete rute in OBJ_DIR
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(ALL_SRCS:.c=.o)))
 
-#Clean command
-RM = rm -f
+# DEBUGGING LINES - BORRAR DESPUÉS DE SOLUCIONAR
+$(info DEBUG: ALL_SRCS = $(ALL_SRCS))
+$(info DEBUG: OBJS = $(OBJS))
+# FIN DEBUGGING LINES
 
 #"Phony targets" indicates that the rules listed are not files
 .PHONY: all clean fclean re
 
-#Rules: Dependencies
-#		comands
-
-#Defines the 'all' target, which depends on the $(NAME)
-#target (libftprintf.a)
 #Default target
 all: $(NAME)
 
 #Build main printf library
-$(NAME) : $(OBJS) $(LIBFT_OBJ)
-	$(AR) $(ARFLAGS) $@ $^
+$(NAME) : $(OBJS) $(LIBFT_A)
+		$(RM) $(NAME)
+		@mkdir -p $(OBJ_DIR)/temp_libft_objs
+		@cd $(OBJ_DIR)/temp_libft_objs && $(AR) x ../../$(LIBFT_A)
+		$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJ_DIR)/temp_libft_objs/*.o
+		@rm -rf $(OBJ_DIR)/temp_libft_objs
+		@ranlib $(NAME) 
 
 #Compile each .c to .o into OBJ/
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/FORMATS/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/UTILS/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #Build libft if needed
-$(LIBFT_OBJ): 
+$(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
 
 #Remove object files
 clean:
 	$(RM) $(OBJS)
-	@-rm -rf $(OBJ_DIR)
+	$(RM) -r $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 #Remove all generated files
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 #Recompile from scratch
 re: fclean all
