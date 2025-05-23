@@ -6,7 +6,7 @@
 #    By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/23 13:03:28 by kakahuate        ###   ########.fr        #
+#    Updated: 2025/05/23 14:14:25 by kakahuate        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,7 @@ SRCS_FORMATS =	print_char.c	\
 		print_string.c	\
 		print_unsigned.c\
 		print_pointer.c	\
-		print_hex.c	\
-		print_percent.c
+		print_hex.c
 SRCS_UTILS =	ft_u_itoa.c	\
 		ft_ultoa.c	\
 		ft_utoa_base.c
@@ -56,11 +55,6 @@ ALL_SRCS = $(addprefix $(SRC_DIR)/, $(SRCS_CORE)) \
 			
 #Object files, converts SRC->OBJ with a complete rute in OBJ_DIR
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(ALL_SRCS:.c=.o)))
-
-# DEBUGGING LINES - BORRAR DESPUÉS DE SOLUCIONAR
-$(info DEBUG: ALL_SRCS = $(ALL_SRCS))
-$(info DEBUG: OBJS = $(OBJS))
-# FIN DEBUGGING LINES
 
 #"Phony targets" indicates that the rules listed are not files
 .PHONY: all clean fclean re

@@ -6,17 +6,14 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:32:16 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/22 14:46:43 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/23 14:25:55 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(va_list args)
+int	print_char(int c)
 {
-	char	c;
-	
-	c = va_arg(args, int);
 	write(1, &c, 1);
 	return (1);
 }
