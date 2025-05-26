@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:02:03 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/23 12:29:34 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 18:34:51 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int print_percent(void)
 {
-    write(1, "%", 1);
+    ft_putchar_fd('%', 1);
     return (1);
 }

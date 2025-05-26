@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:44:49 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/23 14:26:36 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 19:52:17 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <limits.h>
 
 # include "libft.h"
 
@@ -23,19 +24,19 @@
 int		ft_printf(const char *format, ...);
 
 //evaluative function
-int		eval_format(const char *c, va_list args);
+int		eval_format(const char *format, va_list args, int *i);
 
 //individual formats
-int		print_char(int c);
+int		print_char(char c);
 int		print_string(char *str);
 int		print_number(int n);
 int		print_unsigned(unsigned int n);
-int		print_hex(unsigned int n, char format);
+int		print_hex(unsigned int n, int uppercase);
 int		print_pointer(void *ptr);
+int		print_percent(void);
 
 //utils functions
 char	*ft_u_itoa(unsigned int n);
-char	*ft_ultoa(unsigned long n, char *base);
-char	*ft_utoa_base(unsigned int n, char *base);
+char	*ft_utoa_base(unsigned long num, int base, char uppercase);
 
 #endif

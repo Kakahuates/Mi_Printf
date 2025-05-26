@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:43:32 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/22 14:47:04 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 18:05:54 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 int	print_string(char *str)
 {
 	int length;
+	int	i;
 	
-	if (str == NULL)
-	{
-		return (write(1, "NULL", 4));
-	}
+	i = 0;
+	length = 0;
+	if (!str)
+		str = "(null)";
 	length = ft_strlen(str);
-	write(1, str, length);
+	while (str[i])
+	{
+		ft_putchar_fd(str[i], 1);
+		i = i + 1;
+	}
 	return (length);	
 }

@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/23 14:24:52 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 18:50:33 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 int	ft_printf(const char *format, ...)
 {
-	va_list				args;
-	unsigned int		i;
-
-	i = 0;
+	va_list	args;
+	int		i;
+	int		count;
+	int		temp;
+	
 	va_start(args, format);
-	while (*format != '\0')
+	i = 0;
+	count = 0;
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			format++;
-			if (ft_strchr("cspdiuxX", *format))
-				i += eval_format(format, args);
-			else
-				i += print_char('%');
+			temp = eval_format(format, args, &i);
+			count = count + temp;
 		}
 		else
-			i = i + print_char(*format);
-		format++;
+		{
+			ft_putchar_fd(format[i], 1);
+			count += 1;
+		}
+		i += 1;
 	}
 	va_end(args);
-	return (i);
+	return (count);
 }

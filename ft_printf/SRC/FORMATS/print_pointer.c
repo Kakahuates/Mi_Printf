@@ -6,7 +6,7 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:18:35 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/22 15:44:51 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 19:59:00 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,26 @@
 
 int print_pointer(void *ptr)
 {
-    unsigned long   address;
-    int             length;
-    char            *str;
-    
-    address = (unsigned long)ptr;
-    str = ft_utoa_base(address, "0123456789abcdef");
-    if (!str)
-        return (0);
-    write(1, "0x", 2);
-    length = ft_strlen(str);
-    write(1, str, length);
-    free(str);
-    return (length + 2);
+    unsigned long	address;
+	char			*str;
+	int				i;
+	int				length;
+
+	if (ptr == NULL)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	address = (unsigned long)ptr;
+	i = 0;
+	str = ft_utoa_base(address, 16, 0);
+	write(1, "0x", 2);
+	length = ft_strlen(str);
+	while (str[i])
+	{
+		ft_putchar_fd(str[i], 1);
+		i += 1;
+	}
+	free(str);
+	return(length + 2);	
 }

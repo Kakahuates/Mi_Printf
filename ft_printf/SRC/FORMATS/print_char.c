@@ -6,14 +6,14 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:32:16 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/23 14:25:55 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 18:07:49 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_char(int c)
+int	print_char(char c)
 {
-	write(1, &c, 1);
+	ft_putchar_fd(c, 1);
 	return (1);
 }

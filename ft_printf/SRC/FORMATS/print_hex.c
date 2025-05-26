@@ -6,27 +6,26 @@
 /*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:56:26 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/22 14:56:55 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/26 18:29:35 by kakahuate        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_hex(unsigned int n, char format)
+int	print_hex(unsigned int n, int uppercase)
 {
 	int		length;
+	int		i;
 	char	*str;
-	char	*base;
 
-	if (format == 'x')
-		base = "0123456789abcdef";
-	else
-		base = "0123456789ABCDEF";
-	str = ft_utoa_base(n,base);
-	if (!str)
-		return (0);
+	str = ft_utoa_base(n, 16, uppercase);
 	length = ft_strlen(str);
-	write(1,str,length);
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar_fd(str[i], 1);
+		i += 1;
+	}
 	free(str);
 	return (length);
 }
