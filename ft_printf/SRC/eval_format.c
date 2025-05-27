@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eval_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:48:31 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:46:01 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:52:57 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	eval_format(const char *format, va_list args, int *i)
 
 	counter = 0;
 	*i += 1;
-	spec = format[*i]; 
+	spec = format[*i];
 	if (spec == 'c')
 		counter = print_char(va_arg(args, int));
 	if (spec == 's')
@@ -36,5 +36,5 @@ int	eval_format(const char *format, va_list args, int *i)
 		counter = print_pointer(va_arg(args, void *));
 	if (spec == '%')
 		counter = print_percent();
-	return(counter);
+	return (counter);
 }

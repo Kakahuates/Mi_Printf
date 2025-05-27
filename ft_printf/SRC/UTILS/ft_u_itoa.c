@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_u_itoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:51:51 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:21:01 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 15:02:39 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_u_itoa(unsigned int n)
 	{
 		str[length - 1] = (temp % 10) + '0';
 		temp /= 10;
-		length -=1;
+		length -= 1;
 	}
 	return (str);
 }

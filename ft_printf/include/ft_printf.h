@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:44:49 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 19:52:17 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:49:23 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int		print_percent(void);
 
 //utils functions
 char	*ft_u_itoa(unsigned int n);
-char	*ft_utoa_base(unsigned long num, int base, char uppercase);
+char	*ft_utoa_base(unsigned long num, int base, int uppercase);
 
 #endif

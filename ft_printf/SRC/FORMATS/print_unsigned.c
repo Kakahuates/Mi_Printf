@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_unsigned.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:50:23 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:25:14 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 12:48:58 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	print_unsigned(unsigned int n)
 	int		i;
 	int		length;
 
+	i = 0;
 	str = ft_u_itoa(n);
 	if (!str)
 		return (0);

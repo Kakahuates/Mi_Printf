@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:50:33 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:53:33 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_printf(const char *format, ...)
 	int		i;
 	int		count;
 	int		temp;
-	
+
 	va_start(args, format);
 	i = 0;
 	count = 0;

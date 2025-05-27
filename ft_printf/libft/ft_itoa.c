@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:02:12 by ksanchez          #+#    #+#             */
-/*   Updated: 2025/05/23 13:38:19 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 15:08:06 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int	ft_countdigits(long n)
 	}
 	return (counter);
 }
+
 static int	ft_handle_sign(long *number, char *str)
 {
 	if (*number < 0)
@@ -41,10 +42,11 @@ static int	ft_handle_sign(long *number, char *str)
 	}
 	return (0);
 }
+
 static void	ft_fill_string(long number, char *str, int length, int is_negative)
 {
 	int	i;
-	
+
 	i = length - 1;
 	if (is_negative)
 		i = length - 1;
@@ -54,8 +56,8 @@ static void	ft_fill_string(long number, char *str, int length, int is_negative)
 		number /= 10;
 		i--;
 	}
-	
 }
+
 char	*ft_itoa(int n)
 {
 	char	*str;

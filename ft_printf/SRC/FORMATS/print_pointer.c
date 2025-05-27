@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:18:35 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 19:59:00 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:57:51 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_pointer(void *ptr)
+int	print_pointer(void *ptr)
 {
-    unsigned long	address;
+	unsigned long	address;
 	char			*str;
 	int				i;
 	int				length;
@@ -35,5 +35,5 @@ int print_pointer(void *ptr)
 		i += 1;
 	}
 	free(str);
-	return(length + 2);	
+	return (length + 2);
 }

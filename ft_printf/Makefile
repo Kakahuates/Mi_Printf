@@ -3,18 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+         #
+#    By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/26 18:54:02 by kakahuate        ###   ########.fr        #
+#    Updated: 2025/05/27 14:35:36 by ksanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Name of the library
 NAME = libftprintf.a
-
-#executable with main
-EXEC_NAME = ft_printf_test
 
 #Compiler and compilation flags
 CC = cc
@@ -60,15 +57,11 @@ ALL_SRCS_FULL_PATH = $(addprefix $(SRC_DIR)/, $(ALL_SRCS_RELATIVE))
 #Object files, converts SRC->OBJ with a complete rute in OBJ_DIR
 OBJS = $(addprefix $(OBJ_DIR)/, $(ALL_SRCS_RELATIVE:.c=.o))
 
-#for main.o only
-MAIN_SRC = main.c
-MAIN_OBJ = $(OBJ_DIR)/$(MAIN_SRC:.c=.o)
-
 #"Phony targets" indicates that the rules listed are not files
 .PHONY: all clean fclean re
 
 #Default target
-all: $(NAME) $(EXEC_NAME)
+all: $(NAME)
 
 #Build main printf library
 $(NAME) : $(OBJS) $(LIBFT_A)
@@ -78,15 +71,6 @@ $(NAME) : $(OBJS) $(LIBFT_A)
 		$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJ_DIR)/temp_libft_objs/*.o
 		@rm -rf $(OBJ_DIR)/temp_libft_objs
 		@ranlib $(NAME)
-
-#build the excutable main
-$(EXEC_NAME): $(MAIN_OBJ) $(NAME) $(LIBFT_A)
-		$(CC) $(CFLAGS) $(INCLUDES) $< $(NAME) $(LIBFT_A) -o $@
-
-#compile main
-$(MAIN_OBJ): $(MAIN_SRC)
-		@mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #Compile each .c to .o into OBJ/
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -107,17 +91,14 @@ $(LIBFT_A):
 
 #Remove object files
 clean:
-	$(RM) $(OBJS) $(MAIN_OBJ)
+	$(RM) $(OBJS)
 	$(RM) -r $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 
 #Remove all generated files
 fclean: clean
-	$(RM) $(NAME) $(EXEC_NAME)
+	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 #Recompile from scratch
 re: fclean all
-
-test: $(EXEC_NAME)
-	./$(EXEC_NAME)

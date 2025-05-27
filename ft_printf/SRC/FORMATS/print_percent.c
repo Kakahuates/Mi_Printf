@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   print_percent.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:02:03 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:34:51 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:55:02 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_percent(void)
+int	print_percent(void)
 {
-    ft_putchar_fd('%', 1);
-    return (1);
+	ft_putchar_fd('%', 1);
+	return (1);
 }

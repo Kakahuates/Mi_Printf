@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:48:11 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 18:09:37 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 14:54:01 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_number(int n)
 	char	*str;
 	int		i;
 	int		length;
-	
+
 	str = ft_itoa(n);
 	if (!str)
 		return (0);
@@ -29,5 +29,5 @@ int	print_number(int n)
 		i = i + 1;
 	}
 	free(str);
-	return (length);	
+	return (length);
 }

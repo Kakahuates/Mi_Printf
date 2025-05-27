@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakahuate <kakahuate@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:55:06 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/05/26 19:53:07 by kakahuate        ###   ########.fr       */
+/*   Updated: 2025/05/27 15:03:24 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ static int	base_length(unsigned long n, int base)
 		length += 1;
 	}
 	return (length);
-	
 }
 
-char	*ft_utoa_base(unsigned long num, int base, char uppercase)
+char	*ft_utoa_base(unsigned long num, int base, int uppercase)
 {
 	char			*digits;
 	char			*str;
 	int				length;
 	unsigned long	temp;
 
-	digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+	if (uppercase)
+		digits = "0123456789ABCDEF";
+	else
+		digits = "0123456789abcdef";
 	length = base_length(num, base);
 	temp = num;
 	str = (char *)malloc(sizeof(char) * (length + 1));
