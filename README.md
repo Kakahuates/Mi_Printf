@@ -1,3 +1,3 @@
 # Mi_Printf
 CuarentaDosCursus
-Crear la funcion printf de C
+The goal of this project is to replicate printf function from "stdio.h" library from C lenguage.
