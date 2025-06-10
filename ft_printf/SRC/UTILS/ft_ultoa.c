@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_ultoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:31:39 by kakahuate         #+#    #+#             */
-/*   Updated: 2025/06/10 16:09:53 by ksanchez         ###   ########.fr       */
+/*   Created: 2025/05/22 15:09:20 by kakahuate         #+#    #+#             */
+/*   Updated: 2025/05/23 16:04:31 by ksanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+char	*ft_ultoa(unsigned long n, char *base)
 {
-	va_list	args;
-	int		i;
-	int		count;
-	int		temp;
+	char	*str;
+	int		length;
+	int		base_length;
 
-	va_start(args, format);
-	i = 0;
-	count = 0;
-	while (format[i])
+	base_length = ft_strlen(base);
+	length = 1;
+	while (n != 0)
 	{
-		if (format[i] == '%' && format[i + 1])
-		{
-			temp = eval_format(format, args, &i);
-			count = count + temp;
-		}
-		else
-		{
-			ft_putchar_fd(format[i], 1);
-			count += 1;
-		}
-		i += 1;
+		n /= base_length;
+		length++;
 	}
-	va_end(args);
-	return (count);
+	str = malloc(length + 1);
+	if (!str)
+		return ((char *)0);
+	str[length] = '\0';
+	while (length--)
+	{
+		str[length] = base[n % base_length];
+		n /= base_length;
+	}
+	return (str);
 }

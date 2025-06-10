@@ -6,7 +6,7 @@
 #    By: ksanchez <ksanchez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 09:38:35 by kakahuate         #+#    #+#              #
-#    Updated: 2025/05/27 14:35:36 by ksanchez         ###   ########.fr        #
+#    Updated: 2025/06/10 13:25:23 by ksanchez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,12 +65,8 @@ all: $(NAME)
 
 #Build main printf library
 $(NAME) : $(OBJS) $(LIBFT_A)
-		$(RM) $(NAME)
-		@mkdir -p $(OBJ_DIR)/temp_libft_objs
-		@cd $(OBJ_DIR)/temp_libft_objs && $(AR) x ../../$(LIBFT_A)
-		$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJ_DIR)/temp_libft_objs/*.o
-		@rm -rf $(OBJ_DIR)/temp_libft_objs
-		@ranlib $(NAME)
+		@cp $(LIBFT_A) $(NAME)
+		$(AR) $(ARFLAGS) $@ $^
 
 #Compile each .c to .o into OBJ/
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
